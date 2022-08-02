@@ -35,7 +35,7 @@ h1 {
     color: white;
 }
 
-#score {
+#score, #results {
     background-color: var(--darkBrown);
     color: white;
     text-align: center;

@@ -14,12 +14,12 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection == "rock" && computerSelection == "scissors"
         || playerSelection == "scissors" && computerSelection == "paper"
         || playerSelection == "paper" && computerSelection == "rock") {
-        return "You win! " + playerSelection + " beats " + computerSelection + "!";
+        return "You win! " + playerSelection + " beats " + computerSelection + ".";
     }
     else if (playerSelection == "rock" && computerSelection == "paper"
         || playerSelection == "scissors" && computerSelection == "rock"
         || playerSelection == "paper" && computerSelection == "scissors") {
-        return "You lose! " + computerSelection + " beats " + playerSelection + "!";
+        return "You lose! " + computerSelection + " beats " + playerSelection + ".";
     }
     else {
         return "Invalid Input";
@@ -33,17 +33,17 @@ function game() {
     let computerChoice;
     let outcome;
     const buttons = document.querySelectorAll('.rpsButton');
+    const results = document.querySelector('#results');
     const score = document.querySelector('#score');
 
 
 
-    //while (playerCount < 2 && computerCount < 2) {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             playerChoice = button.id;
             computerChoice = getComputerChoice();
             outcome = playRound(playerChoice, computerChoice);
-            alert(outcome);
+            results.textContent = outcome;
             if (outcome.includes("win")) {
                 playerCount++;
             }
@@ -52,15 +52,11 @@ function game() {
             }
             score.textContent = "You: " + playerCount + ". Computer: " + computerCount;
             if (playerCount==2 || computerCount ==2) {
-                //alert("Final score:\nYou: " + playerCount + "\nComputer: " + computerCount);
                 score.textContent = "Game over. Final score: You: " + playerCount + ". Computer: " + computerCount;
             }
         });
     });
-    
-    //button.disabled = true;
-
-
 }
+
 
 game();
