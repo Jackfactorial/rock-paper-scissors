@@ -1,7 +1,7 @@
 function getComputerChoice() {
     let rand = Math.random()
-    rand = Math.floor(rand*3);
-    let rpsArray = ['rock', 'paper', 'scissors'];
+    rand = Math.floor(rand * 3);
+    const rpsArray = ['rock', 'paper', 'scissors'];
     return rpsArray[rand];
 
 }
@@ -11,14 +11,14 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         return "Draw";
     }
-    else if (playerSelection == "rock" && computerSelection == "scissors" 
-    || playerSelection == "scissors" && computerSelection == "paper" 
-    || playerSelection == "paper" && computerSelection == "rock") {
+    else if (playerSelection == "rock" && computerSelection == "scissors"
+        || playerSelection == "scissors" && computerSelection == "paper"
+        || playerSelection == "paper" && computerSelection == "rock") {
         return "You win! " + playerSelection + " beats " + computerSelection + "!";
     }
-    else if (playerSelection == "rock" && computerSelection == "paper" 
-    || playerSelection == "scissors" && computerSelection == "rock" 
-    || playerSelection == "paper" && computerSelection == "scissors") {
+    else if (playerSelection == "rock" && computerSelection == "paper"
+        || playerSelection == "scissors" && computerSelection == "rock"
+        || playerSelection == "paper" && computerSelection == "scissors") {
         return "You lose! " + computerSelection + " beats " + playerSelection + "!";
     }
     else {
@@ -29,20 +29,38 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerCount = 0;
     let computerCount = 0;
-    for (let i=0; i<5; i++) {
-        let playerChoice = prompt("Enter Rock, Paper, or Scissors:");
-        let computerChoice = getComputerChoice();
-        let outcome = playRound(playerChoice, computerChoice)
-        alert(outcome);
-        
-        if (outcome.includes("win")) {
-            playerCount++;
-        }
-        if (outcome.includes("lose")) {
-            computerCount++;
-        }
-    }
-    alert ("Final score:\nYou: " + playerCount + "\nComputer: " + computerCount);
+    let playerChoice;
+    let computerChoice;
+    let outcome;
+    const buttons = document.querySelectorAll('.rpsButton');
+    const score = document.querySelector('#score');
+
+
+
+    //while (playerCount < 2 && computerCount < 2) {
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            playerChoice = button.id;
+            computerChoice = getComputerChoice();
+            outcome = playRound(playerChoice, computerChoice);
+            alert(outcome);
+            if (outcome.includes("win")) {
+                playerCount++;
+            }
+            if (outcome.includes("lose")) {
+                computerCount++;
+            }
+            score.textContent = "You: " + playerCount + ". Computer: " + computerCount;
+            if (playerCount==2 || computerCount ==2) {
+                //alert("Final score:\nYou: " + playerCount + "\nComputer: " + computerCount);
+                score.textContent = "Game over. Final score: You: " + playerCount + ". Computer: " + computerCount;
+            }
+        });
+    });
+    
+    //button.disabled = true;
+
+
 }
 
 game();

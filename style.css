@@ -1,0 +1,44 @@
+:root {
+    --darkBrown: #552020;
+    --mediumBrown: #803D15;
+    --lightBrown: #D4926A;
+}
+
+html {
+    background-color: var(--lightBrown);
+}
+
+h1 {
+    background-color: var(--darkBrown);
+    color: white;
+    text-align: center;
+    font-family: chalkduster;
+    font-weight: bold;
+}
+
+#buttonContainer {
+    border: 5px solid blue;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--mediumBrown);
+}
+
+.rpsButton {
+    height: 50px;
+    width: 65px;
+    margin: 10px;
+}
+
+.rpsButton:hover {
+    background-color: var(--lightBrown);
+    color: white;
+}
+
+#score {
+    background-color: var(--darkBrown);
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-family: chalkduster;
+}
